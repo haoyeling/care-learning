@@ -1,0 +1,3 @@
+The quick brown fox jumps over the lazy dog.
+The dog was not amused by the fox.
+Later that day, the fox ran away quickly and the dog slept.
