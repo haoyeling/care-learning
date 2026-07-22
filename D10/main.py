@@ -1,5 +1,13 @@
+import logging
+
+logging.basicConfig(
+    level=logging.INFO, #或者INFO
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+)
+
+logger = logging.getLogger(__name__)
 print("我是", __name__)
-from contactbook import Contact, Colleague, Family, AddressBook
+from contactbook import Contact, Colleague, Family, AddressBook, InvalidPhoneError
 
 book = AddressBook()
 book.add(Contact("张三", "13800000000", "z@b.com"))
@@ -16,4 +24,11 @@ print(book.count())                       # 期望 4
 print(book.find_by_name("王五"))           # 期望带公司职位的那行
 print(book.find_by_name("王五").validate_phone())   # 期望 True
 print(book.contacts)
+
+try:
+    book.add(Contact("赵六", "abc", "z@b.com"))
+except InvalidPhoneError as e:
+    logger.warning("跳过一条: %s", e)
+
+print(book.count())
 

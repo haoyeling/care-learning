@@ -1,9 +1,12 @@
+from .errors import InvalidPhoneError
 print("我是", __name__)
 class Contact:
     def __init__(self, name, phone, email):
         self.name = name
         self.phone = phone
         self.email = email
+        if not self.validate_phone():
+            raise InvalidPhoneError(f"手机号不合法: {phone}")
     def validate_phone(self):
         if len(self.phone) != 11:
             return False
