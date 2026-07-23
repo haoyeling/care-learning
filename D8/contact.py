@@ -4,7 +4,7 @@ class Contact:
         self.phone = phone
         self.email = email
     def validate_phone(self):
-        if len(self.phone) != 11:
+        if len(self.phone) != 13:
             return False
         for num in self.phone:
             if not num.isdigit():

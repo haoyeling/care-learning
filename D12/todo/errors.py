@@ -1,0 +1,2 @@
+class EmptyTitleError(ValueError):
+    pass

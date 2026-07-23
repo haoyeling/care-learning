@@ -11,11 +11,13 @@ class Contact:
                 return False
         return True
     def to_dict(self):
-        count = {}
-        count ['name'] = self.name
-        count ['phone'] = self.phone
-        count ['email'] = self.email
-        return(count)  
+     return {
+         "name": self.name,
+         "phone": self.phone,
+         "email": self.email,
+     }
+    # 另一种写法,直接写入字典
+ 
     def __str__(self): #print（a）/str(a)/f“{a}”
         return f"{self.name} | {self.phone} | {self.email}"
     def __repr__(self): #print([a]) / 任何容器里的元素
