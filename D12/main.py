@@ -46,3 +46,5 @@ elif args.command == "delete":
         print(f"已删除任务 {args.task_id}")
     except TaskNotFoundError as e:
         print(e)
+        
+print(TaskList.save.__name__)

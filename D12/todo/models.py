@@ -15,26 +15,30 @@ class Task:
     def mark_done(self):
         self.done = True
     
-    def to_dict(self):
+    def to_dict(self):#已有对象，dict，描述它 时间戳
         return {
             "task_id": self.task_id,
             "title": self.title,
             "done": self.done,
-            "created_at": self.created_at.isoformat()
+            "created_at": self.created_at.timestamp(),   # 给机器
+            "created_at_display": self.created_at.strftime("%Y-%m-%d %H:%M"), # 给人
+            #时间戳：比较、排序、算时间差、跨语言、跨时区(数据库存储、API传输、日志分析)
+            #isoformat:配置文件，给人看导出
         }
-    @classmethod
+    @classmethod#磁盘上文本——>dict——>对象
     def from_dict(cls, data):
         return cls(
             data["task_id"],
             data["title"],
             data["done"],
-            datetime.fromisoformat(data["created_at"]),
+            datetime.fromtimestamp(data["created_at"]),
             )
 
 
     def __str__(self):
-        x = "有" if self.done else "没有"
-        return f"{self.task_id} {x} {self.title}"
+        mark = "✓" if self.done else " "
+        when = self.created_at.strftime("%m-%d %H:%M")
+        return f"[{self.task_id}] {mark} {self.title}  ({when})"
     def __repr__(self):
         return f"Task(task_id={self.task_id!r}, title={self.title!r}, done={self.done!r})" 
 

@@ -1,6 +1,8 @@
 import json
 from .models import Task
 from .errors import TaskNotFoundError
+from decorators import timer
+
 class TaskList:
     def __init__(self, filepath="tasks.json"):
         self.tasks = []
@@ -13,6 +15,8 @@ class TaskList:
         if  not self.tasks:
             return 1
         return max([t.task_id for t in self.tasks]) + 1
+    
+    @timer
     def save(self):
         data = [t.to_dict() for t in self.tasks]
         with open(self.filepath, "w", encoding="utf-8") as f:
