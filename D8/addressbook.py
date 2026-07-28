@@ -18,9 +18,9 @@ class Contact:
      }
     # 另一种写法,直接写入字典
  
-    def __str__(self): #print（a）/str(a)/f“{a}”
+    def __str__(self): #print（a）/str(a)/f“{a}” 面向终端用户，好读
         return f"{self.name} | {self.phone} | {self.email}"
-    def __repr__(self): #print([a]) / 任何容器里的元素
+    def __repr__(self): #print([a]) / 任何容器里的元素，面向开发者，准确无歧义
         return f"{type(self).__name__}(name={self.name!r}, phone={self.phone!r}, email={self.email!r})" #字符串取!r会自带引号
 
 class AddressBook:
