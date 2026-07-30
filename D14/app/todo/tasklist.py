@@ -11,6 +11,7 @@ class TaskList:
     def add(self, task: Task) -> None:
         self.tasks.append(task)
 
+    #类型注解，用于fastapi url识别/task/5/done
     def next_id(self) -> int:
         if  not self.tasks:
             return 1
@@ -21,6 +22,7 @@ class TaskList:
         data = [t.to_dict() for t in self.tasks]
         with open(self.filepath, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
+    
     def load(self) -> None:
         try:
             with open(self.filepath, "r", encoding="utf-8") as f:
